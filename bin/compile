@@ -5,17 +5,18 @@ BUILD_DIR=${1:-}
 CACHE_DIR=${2:-}
 ENV_DIR=${3:-}
 
-cd $BUILD_DIR
-
 if [ -f $ENV_DIR/GOOGLE_CREDENTIALS ]
 then
-
-echo "------> Generating google-credentials.json in $BUILD_DIR"
-
-cat $ENV_DIR/GOOGLE_CREDENTIALS >> $BUILD_DIR/google-credentials.json
-
+  google_cloud_credentials="$(cat $ENV_DIR/GOOGLE_CREDENTIALS)"
+  if [ "$google_cloud_credentials" != "" ]; then
+    mkdir -p /secure
+  	echo "-----> Creating /secure/google-credentials.json"
+  	echo "$google_cloud_credentials" > "/secure/google-credentials.json"
+  	exit 0
+  else
+    echo "-----> Unable to create Google Credentials no GOOGLE_CREDENTIALS defined"
+  fi
 else
-
-echo "------> Missing value in GOOGLE_CREDENTIALS"
-
+  echo "-----> Unable to create Google Credentials no GOOGLE_CREDENTIALS defined"
+  exit 0
 fi
