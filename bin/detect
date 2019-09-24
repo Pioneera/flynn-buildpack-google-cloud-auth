@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "flynn-buildpack-google-cloud-auth"
+exit 0
