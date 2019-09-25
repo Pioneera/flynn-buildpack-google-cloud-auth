@@ -11,7 +11,8 @@ then
   if [ "$google_cloud_credentials" != "" ]; then
   	echo "-----> Creating $BUILD_DIR/google-credentials.json"
   	echo "$google_cloud_credentials" > "$BUILD_DIR/google-credentials.json"
-    cp "$BUILD_DIR/google-credentials.json" "/app/bin/"
+    mkdir -p /app/secrets
+    cp "$BUILD_DIR/google-credentials.json" "/app/secrets/"
   	exit 0
   else
     echo "-----> Unable to create Google Credentials no GOOGLE_CREDENTIALS defined"
