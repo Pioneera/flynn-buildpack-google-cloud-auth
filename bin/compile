@@ -9,7 +9,6 @@ if [ -f $ENV_DIR/GOOGLE_CREDENTIALS ]
 then
   google_cloud_credentials="$(cat $ENV_DIR/GOOGLE_CREDENTIALS)"
   if [ "$google_cloud_credentials" != "" ]; then
-    mkdir -p /secure
   	echo "-----> Creating $BUILD_DIR/google-credentials.json"
   	echo "$google_cloud_credentials" > "$BUILD_DIR/google-credentials.json"
   	exit 0
