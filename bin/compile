@@ -9,11 +9,12 @@ if [ -f $ENV_DIR/GOOGLE_CREDENTIALS ]
 then
   google_cloud_credentials="$(cat $ENV_DIR/GOOGLE_CREDENTIALS)"
   if [ "$google_cloud_credentials" != "" ]; then
-  	echo "-----> Creating $BUILD_DIR/secrets/google-credentials.json"
+    secrets_file="$BUILD_DIR/.secrets/google/google-credentials.json"
+  	echo "-----> Creating $secrets_file"
+    mkdir -p "$BUILD_DIR/.secrets/google/"
     cd "$BUILD_DIR"
-    mkdir ./secrets
-  	echo "$google_cloud_credentials" > "$BUILD_DIR/secrets/google-credentials.json"
-    ls -al ./secrets
+  	echo "$google_cloud_credentials" > .secrets/google/google-credentials.json
+    ls -al "$secrets_file"
   	exit 0
   else
     echo "-----> Unable to create Google Credentials no GOOGLE_CREDENTIALS defined"
