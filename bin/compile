@@ -14,7 +14,6 @@ then
     mkdir -p "$BUILD_DIR/.secrets/google/"
     cd "$BUILD_DIR"
   	echo "$google_cloud_credentials" > .secrets/google/google-credentials.json
-    ls -al "$secrets_file"
   	exit 0
   else
     echo "-----> Unable to create Google Credentials no GOOGLE_CREDENTIALS defined"
